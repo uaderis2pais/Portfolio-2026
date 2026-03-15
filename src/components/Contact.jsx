@@ -1,5 +1,42 @@
 import { Mail, Globe, Send, CheckCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+
+// Magnetic Submit Button Wrapper
+const MagneticSubmitButton = ({ children, className, ...props }) => {
+  const ref = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouse = (e) => {
+    const { clientX, clientY } = e;
+    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const middleX = clientX - (left + width / 2);
+    const middleY = clientY - (top + height / 2);
+    // Reducido a 0.1 para que no se salga de los límites de la tarjeta de form
+    setPosition({ x: middleX * 0.22, y: middleY * 0.4 });
+  };
+
+  const reset = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const { x, y } = position;
+  return (
+    <motion.button
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x, y }}
+      transition={{ type: "spring", stiffness: 350, damping: 15, mass: 0.5 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`relative magnetic-target ${className}`}
+      {...props}
+    >
+      {children}
+    </motion.button>
+  );
+};
 
 export const Contact = () => {
   const [status, setStatus] = useState("");
@@ -33,7 +70,7 @@ export const Contact = () => {
             <h2 className="text-4xl font-black mb-4 uppercase tracking-tighter">¿Trabajamos juntos?</h2>
             <p className="text-slate-400">Enviame un mensaje directo a través de este formulario.</p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
               <div className="flex items-center gap-4">
@@ -58,9 +95,9 @@ export const Contact = () => {
                   <input name="email" type="email" placeholder="Email" required className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/50 transition-colors" />
                 </div>
                 <textarea name="message" rows="4" placeholder="Mensaje" required className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/50 transition-colors resize-none"></textarea>
-                <button type="submit" className="w-full py-4 bg-white text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-cyan-400 transition-all flex items-center justify-center gap-3">
+                <MagneticSubmitButton type="submit" className="w-full py-4 bg-white text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-cyan-400 transition-all flex items-center justify-center gap-3 shadow-[0_0_15px_rgba(6,182,212,0.1)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]">
                   ENVIAR SEÑAL <Send className="w-4 h-4" />
-                </button>
+                </MagneticSubmitButton>
                 {status === "ERROR" && <p className="text-red-400 text-xs text-center mt-2">Error al enviar. Intentá de nuevo.</p>}
               </form>
             )}

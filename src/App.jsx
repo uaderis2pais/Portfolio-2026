@@ -7,10 +7,12 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { SoftSkills } from './components/SoftSkills';
 import { Certifications } from './components/Certifications';
+import { Cursor } from './components/Cursor';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-400 overflow-x-hidden">
+    <div className="min-h-screen bg-[#020617] text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-400 overflow-x-hidden cursor-none">
+      <Cursor />
       {/* Dynamic Background (Fondo fijo para todas las secciones) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/10 blur-[120px] rounded-full animate-pulse" />

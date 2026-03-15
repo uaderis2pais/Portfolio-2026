@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
 export const Projects = () => {
@@ -32,9 +33,23 @@ export const Projects = () => {
           <p className="text-slate-500">Aplicando metodologías colaborativas y desarrollo integral.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto" style={{ perspective: 1500 }}>
           {projects.map((project, i) => (
-            <div key={i} className="group relative rounded-[2rem] overflow-hidden border border-white/10 bg-slate-900/40 backdrop-blur-sm transition-all hover:border-cyan-500/30 flex flex-col">
+            <motion.div 
+              key={i} 
+              initial={{ opacity: 0, scale: 0.8, rotateX: 30, rotateY: (i % 2 === 0 ? -30 : 30), z: -300, filter: "blur(20px)" }}
+              whileInView={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0, z: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-100px" }}
+              whileHover={{ 
+                scale: 1.02,
+                rotateX: 2,
+                rotateY: (i % 2 === 0 ? -2 : 2),
+                boxShadow: "0px 20px 60px -15px rgba(6, 182, 212, 0.5)",
+                borderColor: "rgba(6, 182, 212, 0.6)"
+              }}
+              transition={{ type: "spring", stiffness: 80, damping: 14 }}
+              className="group relative rounded-[2rem] overflow-hidden border border-white/10 bg-[#020617]/40 backdrop-blur-2xl transition-colors hover:border-cyan-500/50 flex flex-col shadow-2xl"
+            >
               
               <div className="aspect-video relative overflow-hidden">
                 <img 
@@ -87,7 +102,7 @@ export const Projects = () => {
                   {/* Si es 'info-only' (PET), no renderiza nada aquí, dejando la card limpia */}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
