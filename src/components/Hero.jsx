@@ -137,7 +137,7 @@ export const Hero = () => {
           SISTEMA INICIANDO_
         </div>
         <div className="w-64 h-1 bg-cyan-900 overflow-hidden relative">
-          <motion.div 
+          <motion.div
             className="h-full bg-cyan-400"
             style={{ width: `${bootProgress}%` }}
           />
@@ -150,14 +150,14 @@ export const Hero = () => {
   }
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative min-h-screen flex items-center pt-20 overflow-hidden"
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }}
     >
-      <motion.div 
+      <motion.div
         className={`container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center transition-transform duration-75 ${glitch ? 'translate-x-1 -translate-y-1 skew-x-2 filter invert-[0.1] contrast-150' : ''}`}
         style={{ perspective: 1000 }}
       >
@@ -176,7 +176,7 @@ export const Hero = () => {
               <ScrambleText text="BAUTISTA PAIS" />
             </span>
           </h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8 }}
@@ -184,14 +184,14 @@ export const Hero = () => {
           >
             &gt; Enfocado en el aprendizaje continuo y el desarrollo de soluciones tecnológicas creativas. Especialista en backend, frontend y flujos de trabajo con IA.
           </motion.p>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
             className="flex flex-wrap gap-6 items-center"
           >
-            <MagneticButton 
-              href="#contact" 
+            <MagneticButton
+              href="#contact"
               className="px-8 py-4 bg-transparent border-2 border-cyan-500 text-cyan-400 font-bold rounded-xl hover:bg-cyan-500 hover:text-[#020617] transition-all gap-2 group z-20"
             >
               CONTÁCTAME <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -207,25 +207,25 @@ export const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <div className="relative hidden md:block" style={{ perspective: 1000 }}>
-          <motion.div 
+        <div className="relative mt-12 md:mt-0" style={{ perspective: 1000 }}>
+          <motion.div
             initial={{ scale: 0.8, opacity: 0, rotateY: 90 }}
             animate={{ scale: 1, opacity: 1, rotateY: 0 }}
             transition={{ duration: 1.5, type: "spring", damping: 15 }}
-            style={{ 
-              rotateX: imgRotateX, 
+            style={{
+              rotateX: imgRotateX,
               rotateY: imgRotateY
             }}
-            className="relative z-10 aspect-square rounded-[3rem] overflow-hidden border border-white/10 bg-linear-to-b from-cyan-500/10 to-purple-500/10 p-1 backdrop-blur-3xl shadow-[0_0_80px_rgba(6,182,212,0.2)]"
+            className="relative z-10 aspect-square rounded-[3rem] overflow-hidden border border-white/10 bg-linear-to-b from-cyan-500/10 to-purple-500/10 p-1 backdrop-blur-3xl shadow-[0_0_80px_rgba(6,182,212,0.2)] group"
           >
             <div className="w-full h-full bg-slate-900 flex items-center justify-center rounded-[2.8rem] overflow-hidden relative">
-               <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-20 mix-blend-overlay pointer-events-none" />
-               <img 
-                 src="/foto-perfil.jpg" 
-                 alt="Facundo Pais" 
-                 className="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 opacity-60 hover:opacity-100 scale-105 hover:scale-110" 
-               />
-               <div className="absolute inset-0 bg-linear-to-tr from-cyan-500/30 to-transparent mix-blend-overlay" />
+              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-20 mix-blend-overlay pointer-events-none" />
+              <img
+                src="/foto-perfil.jpg"
+                alt="Facundo Pais"
+                className="w-full h-full object-cover mix-blend-normal md:mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700 opacity-100 md:opacity-60 group-hover:opacity-100 scale-105 group-hover:scale-110 z-10"
+              />
+              <div className="hidden md:block absolute inset-0 bg-linear-to-tr from-cyan-500/30 to-transparent mix-blend-overlay pointer-events-none" />
             </div>
           </motion.div>
           <div className="absolute -top-10 -right-10 w-60 h-60 bg-purple-500/20 blur-[80px] rounded-full" />

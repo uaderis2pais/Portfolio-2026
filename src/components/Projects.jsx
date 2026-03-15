@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
 export const Projects = () => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   const projects = [
     {
       id: "amargo-y-dulce",
@@ -35,12 +37,12 @@ export const Projects = () => {
 
         <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto" style={{ perspective: 1500 }}>
           {projects.map((project, i) => (
-            <motion.div 
-              key={i} 
-              initial={{ opacity: 0, scale: 0.8, rotateX: 30, rotateY: (i % 2 === 0 ? -30 : 30), z: -300, filter: "blur(20px)" }}
-              whileInView={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0, z: 0, filter: "blur(0px)" }}
+            <motion.div
+              key={i}
+              initial={isMobile ? { opacity: 0, y: 30 } : { opacity: 0, scale: 0.8, rotateX: 30, rotateY: (i % 2 === 0 ? -30 : 30), z: -300, filter: "blur(20px)" }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, scale: 1, rotateX: 0, rotateY: 0, z: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-100px" }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 rotateX: 2,
                 rotateY: (i % 2 === 0 ? -2 : 2),
@@ -50,15 +52,15 @@ export const Projects = () => {
               transition={{ type: "spring", stiffness: 80, damping: 14 }}
               className="group relative rounded-[2rem] overflow-hidden border border-white/10 bg-[#020617]/40 backdrop-blur-2xl transition-colors hover:border-cyan-500/50 flex flex-col shadow-2xl"
             >
-              
+
               <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${project.status === 'soon' ? 'grayscale opacity-50' : ''}`} 
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${project.status === 'soon' ? 'grayscale opacity-50' : ''}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
-                
+
                 {project.status === 'soon' && (
                   <div className="absolute top-4 right-4 px-4 py-1.5 bg-cyan-500/20 border border-cyan-500/40 backdrop-blur-md rounded-full">
                     <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest">Próximamente</span>
@@ -70,7 +72,7 @@ export const Projects = () => {
                 <span className="text-cyan-400 text-[10px] font-black tracking-[0.2em] uppercase">{project.category}</span>
                 <h3 className="text-2xl font-black mt-2 mb-4 text-white">{project.title}</h3>
                 <p className="text-slate-400 text-sm mb-6 leading-relaxed h-16 line-clamp-3">{project.desc}</p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-8">
                   {project.tags.map((tag, j) => (
                     <span key={j} className="px-3 py-1 bg-white/5 rounded-full text-[10px] text-white/60 border border-white/5 font-medium">
@@ -82,7 +84,7 @@ export const Projects = () => {
                 {/* Lógica Condicional de Botones */}
                 <div className="mt-auto">
                   {project.status === 'soon' && (
-                    <button 
+                    <button
                       disabled
                       className="w-full py-4 bg-slate-800 text-slate-500 font-bold uppercase tracking-[0.2em] rounded-xl cursor-not-allowed flex items-center justify-center gap-2 text-xs border border-white/5"
                     >
@@ -91,7 +93,7 @@ export const Projects = () => {
                   )}
 
                   {project.status === 'completed' && (
-                    <a 
+                    <a
                       href={project.link}
                       className="w-full py-4 bg-white text-black font-black uppercase tracking-[0.2em] rounded-xl hover:bg-cyan-400 transition-all flex items-center justify-center gap-2 text-xs"
                     >

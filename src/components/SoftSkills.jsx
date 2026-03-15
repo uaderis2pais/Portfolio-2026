@@ -1,20 +1,22 @@
 import { motion } from 'framer-motion';
-import { 
-  MessageSquare, 
-  Zap, 
-  Search, 
-  Users, 
-  Cpu, 
-  Brain, 
-  Scale, 
-  HeartHandshake, 
-  Lightbulb, 
-  CheckCircle, 
-  ShieldCheck, 
-  ArrowUpRight 
+import {
+  MessageSquare,
+  Zap,
+  Search,
+  Users,
+  Cpu,
+  Brain,
+  Scale,
+  HeartHandshake,
+  Lightbulb,
+  CheckCircle,
+  ShieldCheck,
+  ArrowUpRight
 } from 'lucide-react';
 
 export const SoftSkills = () => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   const softSkills = [
     { name: "Comunicación Efectiva", icon: <MessageSquare className="w-5 h-5" /> },
     { name: "Pensamiento Crítico", icon: <Search className="w-5 h-5" /> },
@@ -34,7 +36,7 @@ export const SoftSkills = () => {
     <section id="soft-skills" className="py-24">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-black mb-12 text-center uppercase tracking-widest">Habilidades Blandas</h2>
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -49,20 +51,18 @@ export const SoftSkills = () => {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
         >
           {softSkills.map((skill, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               variants={{
-                hidden: { opacity: 0, scale: 0.3, rotateZ: Math.random() > 0.5 ? 15 : -15, filter: "blur(10px)" },
-                visible: { 
-                  opacity: 1, 
-                  scale: 1, 
-                  rotateZ: 0, 
-                  filter: "blur(0px)", 
-                  transition: { type: "spring", stiffness: 150, damping: 10 } 
-                }
+                hidden: isMobile 
+                  ? { opacity: 0, y: 20 }
+                  : { opacity: 0, scale: 0.3, rotateZ: Math.random() > 0.5 ? 15 : -15, filter: "blur(10px)" },
+                visible: isMobile
+                  ? { opacity: 1, y: 0, transition: { type: "spring", stiffness: 150, damping: 10 } }
+                  : { opacity: 1, scale: 1, rotateZ: 0, filter: "blur(0px)", transition: { type: "spring", stiffness: 150, damping: 10 } }
               }}
-              whileHover={{ 
-                y: -10, 
+              whileHover={{
+                y: -10,
                 scale: 1.1,
                 backgroundColor: 'rgba(168, 85, 247, 0.1)',
                 borderColor: 'rgba(168, 85, 247, 0.4)',
