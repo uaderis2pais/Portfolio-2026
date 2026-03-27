@@ -6,6 +6,16 @@ export const Projects = () => {
 
   const projects = [
     {
+      id: "agarrame-como-puedas",
+      title: "Agarrame como puedas",
+      category: "Frontend Development",
+      desc: "Landing page interactiva desarrollada con React y optimizada para rendimiento y SEO. Presenta una experiencia inmersiva para los usuarios.",
+      tags: ["React", "Vite", "TailwindCSS"],
+      image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1280&auto=format&fit=crop",
+      status: "completed",
+      link: "https://acp-landing-page.vercel.app/"
+    },
+    {
       id: "amargo-y-dulce",
       title: "Amargo y Dulce (E-commerce)",
       category: "Full Stack Development",
