@@ -9,7 +9,7 @@ export const Projects = () => {
       id: "agarrame-como-puedas",
       title: "Agarrame como puedas",
       category: "Frontend Development",
-      desc: "Landing page interactiva desarrollada con React y optimizada para rendimiento y SEO. Presenta una experiencia inmersiva para los usuarios.",
+      desc: "Landing page interactiva desarrollada para un negocio real con React y optimizada para rendimiento y SEO. Presenta una experiencia inmersiva para los usuarios.",
       tags: ["React", "Vite", "TailwindCSS"],
       image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1280&auto=format&fit=crop",
       status: "completed",
@@ -18,12 +18,12 @@ export const Projects = () => {
     {
       id: "amargo-y-dulce",
       title: "Amargo y Dulce (E-commerce)",
-      category: "Full Stack Development",
+      category: "Complete E-commerce Full Stack Development",
       desc: "Sistema integral de comercio electrónico con simulación de clientes reales. Desarrollo de backend, frontend y base de datos desde cero.",
       tags: ["React", "Node.js", "PostgreSQL", "Express"],
       image: "/amargo-dulce.jpg",
-      status: "soon", // Mostrará botón gris y badge "Próximamente"
-      link: "#"
+      status: "completed", // Mostrará botón gris y badge "Próximamente"
+      link: "https://amargo-y-dulce-ktu3.vercel.app/"
     },
     {
       id: "pet",
