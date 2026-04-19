@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import { ScrollProgress } from './ScrollProgress';
 
 // Magnetic Button Wrapper specifically for Navbar element
 const MagneticButton = ({ children, className, href, download, ...props }) => {
@@ -39,6 +41,7 @@ const MagneticButton = ({ children, className, href, download, ...props }) => {
 };
 
 export const Navbar = () => {
+  const { language, toggleLanguage, t } = useLanguage();
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
 
@@ -62,6 +65,11 @@ export const Navbar = () => {
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
+    if (targetId === 'contact') {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      setActiveSection('contact');
+      return;
+    }
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       window.scrollTo({
@@ -122,26 +130,43 @@ export const Navbar = () => {
         </motion.div>
         
         <div className="hidden lg:flex items-center gap-8">
-          {['home', 'about', 'skills', 'projects', 'certifications', 'contact'].map((item) => (
+          {['about', 'skills', 'projects', 'certifications', 'contact'].map((item) => (
             <a 
               key={item} 
               href={`#${item}`}
               onClick={(e) => handleNavClick(e, item)}
-              className={`text-xs font-bold uppercase tracking-widest transition-colors hover:text-cyan-400 ${activeSection === item ? 'text-cyan-400' : 'text-slate-400'}`}
+              className={`text-xs font-bold uppercase tracking-widest transition-colors ${
+                item === 'contact' 
+                  ? 'text-white hover:text-white' 
+                  : activeSection === item 
+                    ? 'text-cyan-400' 
+                    : 'text-slate-400 hover:text-cyan-400'
+              }`}
             >
-              {item}
+              {t(`nav.${item}`)}
             </a>
           ))}
         </div>
 
-        <MagneticButton 
-          href="/Facundo Bautista Pais CV.pdf" 
-          download="CV_Facundo_Pais.pdf"
-          className="px-6 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-bold tracking-widest hover:bg-cyan-500 hover:text-[#020617] transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.1)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]"
-        >
-          CV PDF
-        </MagneticButton>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={toggleLanguage}
+            className="text-[10px] md:text-xs font-bold tracking-widest border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors uppercase"
+            title="Switch Language"
+          >
+            {language === 'es' ? 'EN' : 'ES'}
+          </button>
+          
+          <MagneticButton 
+            href="/Facundo Bautista Pais CV.pdf" 
+            download="CV_Facundo_Pais.pdf"
+            className="px-4 py-1.5 md:px-6 md:py-2 bg-white/5 border border-white/10 rounded-full text-[10px] md:text-xs font-bold tracking-widest hover:bg-cyan-500 hover:text-[#020617] transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.1)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]"
+          >
+            {t('hero.cvBtn').split(' ')[0]} {/* Quick hack para solo mostrar EXTRAER o EXTRACT */}
+          </MagneticButton>
+        </div>
       </div>
+      <ScrollProgress />
     </motion.nav>
   );
 };

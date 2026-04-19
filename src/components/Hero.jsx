@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ChevronRight, Github, Linkedin, Terminal } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 // Scramble text utility
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()_+!';
@@ -73,6 +74,7 @@ const MagneticButton = ({ children, className, href, ...props }) => {
 };
 
 export const Hero = () => {
+  const { t } = useLanguage();
   const [booting, setBooting] = useState(true);
   const [bootProgress, setBootProgress] = useState(0);
 
@@ -133,8 +135,8 @@ export const Hero = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#020617] font-mono text-cyan-500 z-50 fixed inset-0">
         <Terminal className="w-16 h-16 animate-pulse mb-8 opacity-80" />
-        <div className="text-xl tracking-[0.3em] font-bold mb-4 animate-pulse">
-          SISTEMA INICIANDO_
+        <div className="text-xl tracking-[0.3em] font-bold mb-4 animate-pulse uppercase">
+          {t('hero.booting')}
         </div>
         <div className="w-64 h-1 bg-cyan-900 overflow-hidden relative">
           <motion.div
@@ -142,8 +144,8 @@ export const Hero = () => {
             style={{ width: `${bootProgress}%` }}
           />
         </div>
-        <div className="mt-4 text-xs tracking-widest text-cyan-500/50">
-          CARGANDO MÓDULOS DE INTERFAZ [{Math.round(bootProgress)}%]
+        <div className="mt-4 text-xs tracking-widest text-cyan-500/50 uppercase">
+          {bootProgress < 50 ? t('hero.establishing') : t('hero.bypassing')} [{Math.round(bootProgress)}%]
         </div>
       </div>
     );
@@ -167,8 +169,8 @@ export const Hero = () => {
           transition={{ duration: 1, type: "spring", stiffness: 100 }}
           style={{ rotateX, rotateY }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold tracking-widest mb-6 backdrop-blur-md">
-            ESTUDIANTE DE SISTEMAS @ UADER
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold tracking-widest mb-6 backdrop-blur-md uppercase">
+            {t('hero.subtitle')}
           </div>
           <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tighter mix-blend-screen">
             <span className="block opacity-90"><ScrambleText text="FACUNDO" /></span>
@@ -182,7 +184,7 @@ export const Hero = () => {
             transition={{ delay: 1, duration: 0.8 }}
             className="text-lg text-slate-400 max-w-lg mb-8 leading-relaxed font-mono text-sm"
           >
-            &gt; Enfocado en el aprendizaje continuo y el desarrollo de soluciones tecnológicas creativas. Especialista en backend, frontend y flujos de trabajo con IA.
+            &gt; {t('hero.description')}
           </motion.p>
           <motion.div
             initial={{ opacity: 0 }}
@@ -192,9 +194,13 @@ export const Hero = () => {
           >
             <MagneticButton
               href="#contact"
-              className="px-8 py-4 bg-transparent border-2 border-cyan-500 text-cyan-400 font-bold rounded-xl hover:bg-cyan-500 hover:text-[#020617] transition-all gap-2 group z-20"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+              }}
+              className="px-8 py-4 bg-transparent border-2 border-cyan-500 text-cyan-400 font-bold rounded-xl hover:bg-cyan-500 hover:text-[#020617] transition-all gap-2 group z-20 uppercase flex items-center"
             >
-              CONTÁCTAME <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              {t('hero.contactBtn')} <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </MagneticButton>
             <div className="flex gap-4 items-center">
               <MagneticButton href="https://github.com/uaderis2pais" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-cyan-500/20 hover:text-cyan-400 transition-colors z-20">
@@ -219,7 +225,6 @@ export const Hero = () => {
             className="relative z-10 aspect-square rounded-[3rem] overflow-hidden border border-white/10 bg-linear-to-b from-cyan-500/10 to-purple-500/10 p-1 backdrop-blur-3xl shadow-[0_0_80px_rgba(6,182,212,0.2)] group"
           >
             <div className="w-full h-full bg-slate-900 flex items-center justify-center rounded-[2.8rem] overflow-hidden relative">
-              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-20 mix-blend-overlay pointer-events-none" />
               <img
                 src="/foto-perfil.jpg"
                 alt="Facundo Pais"

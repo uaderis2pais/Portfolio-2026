@@ -13,11 +13,12 @@ import {
   ShieldCheck,
   ArrowUpRight
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const SoftSkills = () => {
+  const { language } = useLanguage();
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-
-  const softSkills = [
+  const softSkillsEs = [
     { name: "Comunicación Efectiva", icon: <MessageSquare className="w-5 h-5" /> },
     { name: "Pensamiento Crítico", icon: <Search className="w-5 h-5" /> },
     { name: "Resolución de Problemas", icon: <Zap className="w-5 h-5" /> },
@@ -32,10 +33,27 @@ export const SoftSkills = () => {
     { name: "Inteligencia Emocional", icon: <Brain className="w-5 h-5" /> }
   ];
 
+  const softSkillsEn = [
+    { name: "Effective Communication", icon: <MessageSquare className="w-5 h-5" /> },
+    { name: "Critical Thinking", icon: <Search className="w-5 h-5" /> },
+    { name: "Problem Solving", icon: <Zap className="w-5 h-5" /> },
+    { name: "Team Work", icon: <Users className="w-5 h-5" /> },
+    { name: "Initiative & Creativity", icon: <Lightbulb className="w-5 h-5" /> },
+    { name: "Adaptability", icon: <ArrowUpRight className="w-5 h-5" /> },
+    { name: "Responsibility", icon: <ShieldCheck className="w-5 h-5" /> },
+    { name: "Fast Learning", icon: <Cpu className="w-5 h-5" /> },
+    { name: "Negotiation Skills", icon: <Scale className="w-5 h-5" /> },
+    { name: "Service Orientation", icon: <HeartHandshake className="w-5 h-5" /> },
+    { name: "Decision Making", icon: <CheckCircle className="w-5 h-5" /> },
+    { name: "Emotional Intelligence", icon: <Brain className="w-5 h-5" /> }
+  ];
+
+  const softSkills = language === 'es' ? softSkillsEs : softSkillsEn;
+
   return (
     <section id="soft-skills" className="py-24">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-black mb-12 text-center uppercase tracking-widest">Habilidades Blandas</h2>
+        <h2 className="text-3xl font-black mb-12 text-center uppercase tracking-widest">{language === 'es' ? 'Habilidades Blandas' : 'Soft Skills'}</h2>
         <motion.div
           initial="hidden"
           whileInView="visible"

@@ -1,6 +1,8 @@
 import { Mail, Globe, Send, CheckCircle } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import { BorderBeam } from './BorderBeam';
 
 // Magnetic Submit Button Wrapper
 const MagneticSubmitButton = ({ children, className, ...props }) => {
@@ -39,6 +41,7 @@ const MagneticSubmitButton = ({ children, className, ...props }) => {
 };
 
 export const Contact = () => {
+  const { language } = useLanguage();
   const [status, setStatus] = useState("");
 
   const handleSubmit = async (e) => {
@@ -63,40 +66,42 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-[2.5rem] p-12 backdrop-blur-xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black mb-4 uppercase tracking-tighter">¿Trabajamos juntos?</h2>
-            <p className="text-slate-400">Enviame un mensaje directo a través de este formulario.</p>
+    <section id="contact" className="py-4 md:py-10 relative overflow-hidden w-full">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="w-full max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-2xl md:rounded-[2.5rem] p-5 md:p-12 backdrop-blur-xl relative overflow-hidden">
+          <BorderBeam duration={12} borderWidth={2} className="opacity-50" />
+          
+          <div className="text-center mb-8 md:mb-12 relative z-10 break-words">
+            <h2 className="text-2xl md:text-4xl font-black mb-3 md:mb-4 uppercase tracking-tighter">{language === 'es' ? '¿Trabajamos juntos?' : 'Shall we work together?'}</h2>
+            <p className="text-slate-400 text-xs md:text-base">{language === 'es' ? 'Enviame un mensaje directo a través de este formulario.' : 'Send me a direct message through this form.'}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400"><Mail className="w-4 h-4" /></div>
-                <span className="text-sm font-bold">facubpais@gmail.com</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative z-10">
+            <div className="flex flex-col gap-4 md:gap-6 justify-center">
+              <div className="flex items-center gap-3 md:gap-4 overflow-hidden">
+                <div className="shrink-0 w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400"><Mail className="w-4 h-4" /></div>
+                <span className="text-xs md:text-sm font-bold truncate">facubpais@gmail.com</span>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400"><Globe className="w-4 h-4" /></div>
-                <span className="text-sm font-bold">Concepción del Uruguay, Entre Ríos</span>
+              <div className="flex items-center gap-3 md:gap-4 overflow-hidden">
+                <div className="shrink-0 w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400"><Globe className="w-4 h-4" /></div>
+                <span className="text-xs md:text-sm font-bold truncate">Entre Ríos, Argentina</span>
               </div>
             </div>
 
             {status === "SUCCESS" ? (
               <div className="flex flex-col items-center justify-center p-8 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl animate-pulse">
                 <CheckCircle className="text-cyan-400 w-12 h-12 mb-4" />
-                <p className="text-cyan-400 font-bold uppercase tracking-widest text-center">¡Señal Enviada con Éxito!</p>
+                <p className="text-cyan-400 font-bold uppercase tracking-widest text-center">{language === 'es' ? '¡Señal Enviada con Éxito!' : 'Signal Successfully Sent!'}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 gap-4">
-                  <input name="name" type="text" placeholder="Nombre" required className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/50 transition-colors" />
-                  <input name="email" type="email" placeholder="Email" required className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/50 transition-colors" />
+                  <input name="name" type="text" placeholder={language === 'es' ? 'Nombre' : 'Name'} required className="w-full text-sm px-4 md:px-6 py-3 md:py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/50 transition-colors" />
+                  <input name="email" type="email" placeholder="Email" required className="w-full text-sm px-4 md:px-6 py-3 md:py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/50 transition-colors" />
                 </div>
-                <textarea name="message" rows="4" placeholder="Mensaje" required className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/50 transition-colors resize-none"></textarea>
-                <MagneticSubmitButton type="submit" className="w-full py-4 bg-white text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-cyan-400 transition-all flex items-center justify-center gap-3 shadow-[0_0_15px_rgba(6,182,212,0.1)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]">
-                  ENVIAR SEÑAL <Send className="w-4 h-4" />
+                <textarea name="message" rows="4" placeholder={language === 'es' ? 'Mensaje' : 'Message'} required className="w-full text-sm px-4 md:px-6 py-3 md:py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/50 transition-colors resize-none"></textarea>
+                <MagneticSubmitButton type="submit" className="w-full text-xs md:text-sm py-4 bg-white text-black font-black uppercase tracking-[0.1em] md:tracking-[0.2em] rounded-xl md:rounded-2xl hover:bg-cyan-400 transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(6,182,212,0.1)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]">
+                  {language === 'es' ? 'ENVIAR SEÑAL' : 'TRANSMIT SIGNAL'} <Send className="w-4 h-4" />
                 </MagneticSubmitButton>
                 {status === "ERROR" && <p className="text-red-400 text-xs text-center mt-2">Error al enviar. Intentá de nuevo.</p>}
               </form>
