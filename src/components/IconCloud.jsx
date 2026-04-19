@@ -18,12 +18,12 @@ export const cloudProps = {
     imageScale: 2,
     activeCursor: "default",
     tooltip: "native",
-    initial: [0.1, -0.1],
+    initial: [0.05, -0.05],
     clickToFront: 500,
     tooltipDelay: 0,
     outlineColour: "#0000",
-    maxSpeed: 0.04,
-    minSpeed: 0.02
+    maxSpeed: 0.02,
+    minSpeed: 0.01
   }
 };
 

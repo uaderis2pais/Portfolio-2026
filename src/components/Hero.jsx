@@ -133,18 +133,18 @@ export const Hero = () => {
 
   if (booting) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#020617] font-mono text-cyan-500 z-50 fixed inset-0">
+      <div className="h-[100dvh] w-full flex flex-col items-center justify-center bg-[#020617] font-mono text-cyan-500 z-[100] fixed top-0 left-0 right-0 bottom-0 overflow-hidden px-4 box-border">
         <Terminal className="w-16 h-16 animate-pulse mb-8 opacity-80" />
-        <div className="text-xl tracking-[0.3em] font-bold mb-4 animate-pulse uppercase">
+        <div className="text-lg md:text-xl tracking-[0.2em] font-bold mb-4 animate-pulse uppercase text-center ml-[0.2em]">
           {t('hero.booting')}
         </div>
-        <div className="w-64 h-1 bg-cyan-900 overflow-hidden relative">
+        <div className="w-full max-w-[16rem] h-1 bg-cyan-900 overflow-hidden relative">
           <motion.div
             className="h-full bg-cyan-400"
             style={{ width: `${bootProgress}%` }}
           />
         </div>
-        <div className="mt-4 text-xs tracking-widest text-cyan-500/50 uppercase">
+        <div className="mt-4 text-[10px] md:text-xs tracking-widest text-cyan-500/50 uppercase text-center w-full ml-[0.1em]">
           {bootProgress < 50 ? t('hero.establishing') : t('hero.bypassing')} [{Math.round(bootProgress)}%]
         </div>
       </div>
