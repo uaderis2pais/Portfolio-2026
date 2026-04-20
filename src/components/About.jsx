@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/LanguageContext';
+import { BorderBeam } from './BorderBeam';
 
 export const About = () => {
   const { language } = useLanguage();
@@ -66,7 +67,18 @@ export const About = () => {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
+              <div className="relative z-10 aspect-square rounded-[2rem] overflow-hidden border border-white/10 bg-gradient-to-b from-cyan-500/10 to-purple-500/10 p-1 backdrop-blur-3xl shadow-[0_0_40px_rgba(6,182,212,0.15)] mx-auto w-48 md:w-full max-w-[250px] group">
+                <div className="w-full h-full bg-slate-900 rounded-[1.8rem] overflow-hidden relative">
+                  <img 
+                    src="/foto-perfil.jpg" 
+                    alt="Facundo Pais Profile" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-transparent pointer-events-none" />
+                </div>
+              </div>
+
               <div className="p-6 rounded-3xl bg-linear-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-xl">
                 <h3 className="text-sm font-bold text-cyan-400 uppercase tracking-widest mb-4">{t.education}</h3>
                 <div className="space-y-4">

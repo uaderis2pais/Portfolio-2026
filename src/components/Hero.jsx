@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ChevronRight, Github, Linkedin, Terminal } from 'lucide-react';
+import { motion, AnimatePresence, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { ChevronRight, Github, Linkedin, Terminal, Cpu, Code2 } from 'lucide-react';
+import { SpiralAnimation } from './ui/spiral-animation';
+import { Boxes } from './ui/background-boxes';
+import { GlobeInteractive } from './ui/cobe-globe';
 import { useLanguage } from '../context/LanguageContext';
 
 // Scramble text utility
@@ -118,18 +121,18 @@ export const Hero = () => {
     mouseY.set((e.clientY - centerY) / rect.height);
   };
 
-  // Random Glitch on full container
-  const [glitch, setGlitch] = useState(false);
+  // Carousel Slide Logic
+  const [slide, setSlide] = useState(0);
   useEffect(() => {
     if (booting) return;
-    const triggerGlitch = () => {
-      setGlitch(true);
-      setTimeout(() => setGlitch(false), 150);
-      setTimeout(triggerGlitch, Math.random() * 10000 + 5000); // 5-15s
-    };
-    const to = setTimeout(triggerGlitch, 5000);
-    return () => clearTimeout(to);
-  }, [booting]);
+    // Durations: Spiral = 30000ms (15s x 2 loops), CPU = 4500ms, Code = 4500ms
+    const durations = [8000, 8000, 8000];
+    const timer = setTimeout(() => {
+      setSlide((prev) => (prev + 1) % 3);
+    }, durations[slide]);
+
+    return () => clearTimeout(timer);
+  }, [booting, slide]);
 
   if (booting) {
     return (
@@ -160,7 +163,7 @@ export const Hero = () => {
       onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }}
     >
       <motion.div
-        className={`container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center transition-transform duration-75 ${glitch ? 'translate-x-1 -translate-y-1 skew-x-2 filter invert-[0.1] contrast-150' : ''}`}
+        className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
         style={{ perspective: 1000 }}
       >
         <motion.div
@@ -222,15 +225,95 @@ export const Hero = () => {
               rotateX: imgRotateX,
               rotateY: imgRotateY
             }}
-            className="relative z-10 aspect-square rounded-[3rem] overflow-hidden border border-white/10 bg-linear-to-b from-cyan-500/10 to-purple-500/10 p-1 backdrop-blur-3xl shadow-[0_0_80px_rgba(6,182,212,0.2)] group"
+            // Added max-w-[360px] or max-w-sm and mx-auto to shrink it gracefully
+            className="relative z-10 aspect-square rounded-[3rem] overflow-hidden border border-white/10 bg-linear-to-b from-cyan-500/10 to-purple-500/10 p-1 backdrop-blur-3xl shadow-[0_0_80px_rgba(6,182,212,0.2)] group mx-auto w-full max-w-[400px] md:max-w-[520px]"
           >
             <div className="w-full h-full bg-slate-900 flex items-center justify-center rounded-[2.8rem] overflow-hidden relative">
-              <img
-                src="/foto-perfil.jpg"
-                alt="Facundo Pais"
-                className="w-full h-full object-cover mix-blend-normal md:mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700 opacity-100 md:opacity-60 group-hover:opacity-100 scale-105 group-hover:scale-110 z-10"
-              />
-              <div className="hidden md:block absolute inset-0 bg-linear-to-tr from-cyan-500/30 to-transparent mix-blend-overlay pointer-events-none" />
+
+              {/* Animation Gallery Status Badge Overlay */}
+              <div className="absolute top-6 left-6 z-40 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-xl">
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(6,182,212,1)]" />
+                <span className="text-[9px] md:text-[10px] text-cyan-50 font-bold tracking-[0.2em] uppercase">{t('hero.gallery')}</span>
+              </div>
+
+              <AnimatePresence mode="wait">
+                {slide === 0 && (
+                  <motion.div
+                    key="spiral"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.2 }}
+                    transition={{ duration: 0.6 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <SpiralAnimation />
+                    <motion.div
+                      key="welcome-text"
+                      initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 1.1 }}
+                      transition={{ delay: 1, duration: 2, ease: "easeOut" }}
+                      className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none mix-blend-plus-lighter mt-6 md:mt-8"
+                    >
+                      <h3 className="text-white text-xl md:text-2xl tracking-[0.4em] uppercase font-bold animate-pulse drop-shadow-[0_0_15px_rgba(6,182,212,1)] ml-[0.4em]">
+                        {t('hero.welcome') || 'Bienvenido'}
+                      </h3>
+                    </motion.div>
+                  </motion.div>
+                )}
+                {slide === 1 && (
+                  <motion.div
+                    key="boxes"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 overflow-hidden"
+                  >
+                    <div className="absolute inset-0 w-full h-full bg-slate-900 z-10 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+
+                    <Boxes />
+
+                    <h1 className="md:text-3xl text-xl text-white relative z-20 font-black tracking-tight text-center px-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+                      {t('hero.tailwindTitle')}
+                    </h1>
+                    <p className="text-center mt-2 text-cyan-300 relative z-20 text-xs md:text-sm px-4 font-mono tracking-widest">
+                      {t('hero.tailwindSub')}
+                    </p>
+                    <p className="text-center mt-4 text-white/30 relative z-20 text-[10px] tracking-widest uppercase font-mono animate-pulse">
+                      {t('hero.hoverGrid')}
+                    </p>
+                  </motion.div>
+                )}
+                {slide === 2 && (
+                  <motion.div
+                    key="globe"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 overflow-hidden"
+                  >
+                    <div className="w-[95%] max-w-[360px] shrink-0">
+                      <GlobeInteractive speed={0.005} />
+                    </div>
+                    <p className="text-white/20 text-[9px] font-mono tracking-[0.2em] uppercase mt-2 animate-pulse">
+                      {t('hero.dragGlobe')}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Nav Indicators */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+                {[0, 1, 2].map((idx) => (
+                  <div
+                    key={idx}
+                    className={`h-1.5 rounded-full transition-all duration-700 ${slide === idx ? 'w-8 bg-cyan-400 shadow-[0_0_12px_rgba(6,182,212,1)]' : 'w-2 bg-white/20'}`}
+                  />
+                ))}
+              </div>
+              <div className="hidden md:block absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-transparent mix-blend-overlay pointer-events-none z-20" />
             </div>
           </motion.div>
           <div className="absolute -top-10 -right-10 w-60 h-60 bg-purple-500/20 blur-[80px] rounded-full" />
