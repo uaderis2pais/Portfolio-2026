@@ -17,7 +17,7 @@ function App() {
 
       <div className="relative z-10 bg-[#020617] mb-[100vh] rounded-b-[2rem] shadow-2xl shadow-cyan-900/20">
         <ParticleBackground />
-        
+
         {/* Dynamic Backgrounds */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/10 blur-[120px] rounded-full animate-pulse" />
@@ -27,13 +27,13 @@ function App() {
         <main className="relative z-10">
           <Hero />
           <About />
-          <SoftSkills />
-          <Skills />
           <Projects />
+          <Skills />
+          <SoftSkills />
           <Certifications />
         </main>
       </div>
-      
+
       <Footer />
     </div>
   );
