@@ -193,22 +193,23 @@ export const Projects = () => {
       link: "https://amargo-y-dulce-ktu3.vercel.app/"
     },
     {
-      id: "agarrame-como-puedas",
-      title: "Agarrame como puedas",
+      id: "SushiApp-Website",
+      title: "SushiApp",
       category: "Frontend Dev",
-      desc: "Landing page interactiva desarrollada para un negocio real con React y optimizada para rendimiento y SEO. Presenta una experiencia inmersiva para los usuarios.",
+      desc: "White Label - Landing page interactiva desarrollada para un negocio real con React y optimizada para rendimiento y SEO. Presenta una experiencia inmersiva para los usuarios.",
       architecture: "Single Page Application (SPA) ultra-optimizada utilizando React v18 y Vite. Estilizado profundo con TailwindCSS para garantizar rendimiento perfecto (+90 Lighthouse score).",
       goal: "Crear una presencia digital de altísimo impacto visual para captar la atención de clientes retail, enfocándose en velocidad de carga extrema y SEO técnico.",
       challenges: "Balancear animaciones visuales complejas con la carga de assets pesados asincrónicamente sin comprometer el First Contentful Paint ni generar Cumulative Layout Shift.",
       tags: ["React", "Vite", "TailwindCSS", "SEO"],
       image: "/homeACP.PNG",
       gallery: [
-        "/homeACP.PNG",
-        "/panelACP.PNG",
-        "/ventasACP.PNG"
+        "/homeSushi.PNG",
+        "/panelSushi.PNG",
+        "/ventasSushi.PNG",
+        "/pedidosPendientesSushi.PNG"
       ],
       status: "completed",
-      link: "https://acp-landing-page.vercel.app/"
+      link: "https://sushiapp-landing-page.vercel.app/"
     },
     {
       id: "pet",
