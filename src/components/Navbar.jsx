@@ -111,9 +111,7 @@ export const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className={`text-2xl font-black tracking-tighter flex items-center gap-2 transition-transform ${glitchTitle ? 'scale-110 skew-x-3 filter invert-[0.1]' : ''}`}
         >
-          <div className="w-8 h-8 bg-linear-to-tr from-cyan-500 to-purple-500 rounded-lg rotate-45 flex items-center justify-center">
-            <span className="-rotate-45 text-white text-xs">F</span>
-          </div>
+          <img src="/logo.svg" alt="FP Logo" className="w-10 h-10 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
           <span className="bg-clip-text text-transparent bg-linear-to-r from-white to-slate-400 relative">
             FACUNDO<span className="text-cyan-500">.</span>PAIS
             {glitchTitle && (
