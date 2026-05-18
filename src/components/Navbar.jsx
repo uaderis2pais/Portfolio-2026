@@ -48,16 +48,28 @@ export const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      const sections = ['home', 'about', 'skills', 'projects', 'certificates', 'soft-skills', 'contact'];
+      
+      // Check if user is at the bottom of the page for 'contact'
+      const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+      if (isAtBottom) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // Normal scroll spy for scrolling sections
+      const sections = ['home', 'about', 'projects', 'skills', 'soft-skills', 'certifications'];
+      let current = 'home';
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(section);
+          // Threshold of 200px from top to trigger section change
+          if (rect.top <= 200) {
+            current = section;
           }
         }
       }
+      setActiveSection(current);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -128,7 +140,7 @@ export const Navbar = () => {
         </motion.div>
         
         <div className="hidden lg:flex items-center gap-8">
-          {['about', 'skills', 'projects', 'certifications', 'contact'].map((item) => (
+          {['about', 'projects', 'skills', 'certifications', 'contact'].map((item) => (
             <a 
               key={item} 
               href={`#${item}`}

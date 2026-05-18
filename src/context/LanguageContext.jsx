@@ -3,11 +3,11 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const translations = {
   es: {
     nav: {
-      about: "SOBRE MÍ",
+      about: "PERFIL PROFESIONAL",
       projects: "PROYECTOS",
-      skills: "SKILLS",
-      certifications: "CERTIFICADOS",
-      contact: "CONTÁCTAME"
+      skills: "HABILIDADES TÉCNICAS",
+      certifications: "CERTIFICACIONES",
+      contact: "¿TRABAJAMOS JUNTOS?"
     },
     hero: {
       subtitle: "Analista en Sistemas de Información | Desarrollador Web",
@@ -28,11 +28,11 @@ const translations = {
   },
   en: {
     nav: {
-      about: "ABOUT ME",
+      about: "PROFESSIONAL PROFILE",
       projects: "PROJECTS",
-      skills: "SKILLS",
+      skills: "HARD SKILLS",
       certifications: "CERTIFICATES",
-      contact: "CONTACT"
+      contact: "WORK TOGETHER?"
     },
     hero: {
       subtitle: "Information Systems Analyst | Web Developer",

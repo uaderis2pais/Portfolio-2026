@@ -7,8 +7,8 @@ export const About = () => {
   const content = {
     es: {
       title: "PERFIL PROFESIONAL",
-      p1: "Actualmente cursando el 4to año de la Licenciatura en Sistemas de Información en UADER-FCYT. Me caracterizo por mi iniciativa y capacidad para resolver problemas en entornos dinámicos.",
-      p2: "He colaborado en proyectos académicos aplicando arquitecturas modernas, priorizando la integración de IA en el flujo de trabajo para maximizar la productividad y calidad del código.",
+      p1: "Soy Analista de Sistemas recibido y actualmente curso el 4to año de la Licenciatura en Sistemas de Información en UADER-FCYT. Me caracterizo por mi iniciativa y capacidad para resolver problemas en entornos dinámicos.",
+      p2: "He desarrollado robustas aplicaciones Full Stack, como se evidencia en mis proyectos, aplicando arquitecturas modernas y priorizando la integración de IA en el flujo de trabajo. Me encuentro activamente buscando nuevos proyectos donde integrarme para seguir ampliando y perfeccionando mis conocimientos.",
       year: "4to Año",
       spanish: "Español",
       native: "Nativo",
@@ -17,13 +17,15 @@ export const About = () => {
       education: "Educación",
       degree: "Lic. en Sistemas",
       progress: "UADER - FCYT (En curso)",
+      analystDegree: "Analista de Sistemas",
+      analystProgress: "UADER - FCYT (2023 - 2026)",
       highschool: "Secundario Completo",
       school: "Inst. Sagrado Corazón"
     },
     en: {
       title: "PROFESSIONAL PROFILE",
-      p1: "Currently in my 4th year of Information Systems Engineering at UADER-FCYT. I am characterized by my initiative and ability to solve problems in dynamic environments.",
-      p2: "I have collaborated on academic projects applying modern architectures, prioritizing the integration of AI in workflows to maximize productivity and code quality.",
+      p1: "I am a graduated Systems Analyst, currently in my 4th year of the Information Systems Licentiate degree at UADER-FCYT. I am characterized by my initiative and ability to solve problems in dynamic environments.",
+      p2: "I have developed robust Full Stack applications, as evidenced in my projects, applying modern architectures and prioritizing the integration of AI in workflows. I am actively seeking new projects to join in order to continue expanding and improving my knowledge.",
       year: "4th Year",
       spanish: "Spanish",
       native: "Native",
@@ -32,6 +34,8 @@ export const About = () => {
       education: "Education",
       degree: "Systems Eng.",
       progress: "UADER - FCYT (In progress)",
+      analystDegree: "Systems Analyst",
+      analystProgress: "UADER - FCYT (2023 - 2026)",
       highschool: "High School",
       school: "Inst. Sagrado Corazón"
     }
@@ -85,6 +89,10 @@ export const About = () => {
                   <div>
                     <p className="font-bold text-white text-sm">{t.degree}</p>
                     <p className="text-xs text-slate-500">{t.progress}</p>
+                  </div>
+                  <div>
+                    <p className="font-bold text-white text-sm">{t.analystDegree}</p>
+                    <p className="text-xs text-slate-500">{t.analystProgress}</p>
                   </div>
                   <div>
                     <p className="font-bold text-white text-sm">{t.highschool}</p>

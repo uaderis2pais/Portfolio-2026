@@ -31,19 +31,19 @@ export const Skills = () => {
   const { language } = useLanguage();
 
   const skillsEs = [
-    { name: "React & Frontend", level: 90, icon: <Monitor className="w-5 h-5" /> },
-    { name: "Node.js & Backend", level: 75, icon: <Cpu className="w-5 h-5" /> },
-    { name: "Python & Integración IA", level: 45, icon: <Brain className="w-5 h-5" /> },
-    { name: "PostgreSQL & DB", level: 70, icon: <Layers className="w-5 h-5" /> },
-    { name: "Ciberseguridad", level: 30, icon: <Shield className="w-5 h-5" /> }
+    { name: "React & Frontend", level: 90, text: "Avanzado", icon: <Monitor className="w-5 h-5" /> },
+    { name: "Node.js & Backend", level: 75, text: "Avanzado / Intermedio", icon: <Cpu className="w-5 h-5" /> },
+    { name: "Python & Integración IA", level: 45, text: "Intermedio / Básico", icon: <Brain className="w-5 h-5" /> },
+    { name: "PostgreSQL & DB", level: 70, text: "Intermedio", icon: <Layers className="w-5 h-5" /> },
+    { name: "Ciberseguridad", level: 30, text: "Básico", icon: <Shield className="w-5 h-5" /> }
   ];
 
   const skillsEn = [
-    { name: "React & Frontend", level: 90, icon: <Monitor className="w-5 h-5" /> },
-    { name: "Node.js & Backend", level: 75, icon: <Cpu className="w-5 h-5" /> },
-    { name: "Python & AI Integration", level: 45, icon: <Brain className="w-5 h-5" /> },
-    { name: "PostgreSQL & DB", level: 70, icon: <Layers className="w-5 h-5" /> },
-    { name: "Cybersecurity", level: 30, icon: <Shield className="w-5 h-5" /> }
+    { name: "React & Frontend", level: 90, text: "Advanced", icon: <Monitor className="w-5 h-5" /> },
+    { name: "Node.js & Backend", level: 75, text: "Advanced / Intermediate", icon: <Cpu className="w-5 h-5" /> },
+    { name: "Python & AI Integration", level: 45, text: "Intermediate / Basic", icon: <Brain className="w-5 h-5" /> },
+    { name: "PostgreSQL & DB", level: 70, text: "Intermediate", icon: <Layers className="w-5 h-5" /> },
+    { name: "Cybersecurity", level: 30, text: "Basic", icon: <Shield className="w-5 h-5" /> }
   ];
 
   const skills = language === 'es' ? skillsEs : skillsEn;
@@ -93,7 +93,7 @@ export const Skills = () => {
                     </div>
                     <span className="font-bold">{skill.name}</span>
                   </div>
-                  <span className="text-cyan-400 font-mono text-sm">{skill.level}%</span>
+                  <span className="text-cyan-400 font-mono text-sm uppercase">{skill.text}</span>
                 </div>
                 <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                   <motion.div
