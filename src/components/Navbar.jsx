@@ -167,8 +167,8 @@ export const Navbar = () => {
           </button>
 
           <MagneticButton
-            href="/Facundo Bautista Pais CV.pdf"
-            download="CV_Facundo_Pais.pdf"
+            href="/Facundo_Bautista_Pais_CV2026.pdf"
+            download="CV_Facundo_Bautista_Pais2026.pdf"
             className="px-4 py-1.5 md:px-6 md:py-2 bg-white/5 border border-white/10 rounded-full text-[10px] md:text-xs font-bold tracking-widest hover:bg-cyan-500 hover:text-[#020617] transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.1)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]"
           >
             {t('hero.cvBtn').split(' ')[0]} {/* Quick hack para solo mostrar EXTRAER o EXTRACT */}
