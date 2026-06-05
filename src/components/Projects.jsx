@@ -193,6 +193,32 @@ export const Projects = () => {
       link: "https://amargo-y-dulce-ktu3.vercel.app/"
     },
     {
+      id: "el-bigua",
+      title: "El Biguá Deportes Web",
+      category: "E-Commerce Ligero",
+      desc: "Plataforma web de catálogo interactivo y e-commerce ligero diseñada para una tienda física especializada en Caza, Pesca, Náutica y Camping. Permite digitalizar todo su catálogo y conectar ventas a WhatsApp administrando el stock desde Google Sheets sin paneles complejos.",
+      architecture: "Frontend SPA con React (Vite) y Tailwind CSS v4. Base de Datos y CMS en tiempo real usando Google Sheets (parser CSV). Backend/Tracking Serverless mediante Google Apps Script.",
+      goal: "Digitalizar el catálogo de un comercio local y conectar sus ventas directamente a WhatsApp, facilitando que el dueño administre el stock sin conocimientos técnicos.",
+      challenges: "Desarrollar un CMS en tiempo real basado en hojas de cálculo con validación dinámica, crear un Popularity Tracker Serverless saltando restricciones de CORS y optimizar el SEO técnico en una SPA.",
+      features: [
+        "Google Sheets como CMS en tiempo real (parser CSV personalizado)",
+        "Popularity Tracker Serverless (Apps Script) con algoritmo de puntuación",
+        "Optimización de Performance (Lighthouse > 85) con Code-Splitting y Lazy Loading",
+        "SEO Dinámico Avanzado con inyección de JSON-LD y canónicas (custom hook useSEO)",
+        "Seguridad Anti-Spam: Honeypot en checkout, validación isTrusted y decoy HTML",
+        "Analíticas de Conversión integradas dinámicamente con Google Analytics 4 (GA4)"
+      ],
+      tags: ["React", "Vite", "Tailwind CSS", "Google Sheets", "Apps Script", "SEO", "GA4"],
+      image: "/homeElBigua.PNG",
+      gallery: [
+        "/ElBiguaLinkedIn.PNG",
+        "/ElBiguaCatalogo.PNG",
+        "/GoogleSheetBigua.PNG"
+      ],
+      status: "completed",
+      link: "https://el-bigua-deportes-web.vercel.app/"
+    },
+    {
       id: "SushiApp-Website",
       title: "SushiApp",
       category: "Frontend Dev",
@@ -256,6 +282,32 @@ export const Projects = () => {
       ],
       status: "completed",
       link: "https://amargo-y-dulce-ktu3.vercel.app/"
+    },
+    {
+      id: "el-bigua",
+      title: "El Biguá - Deportes Web",
+      category: "Lightweight E-Commerce",
+      desc: "Interactive catalog and lightweight e-commerce platform designed for a physical store specializing in Hunting, Fishing, Boating, and Camping. Allows digitizing their catalog and connecting sales to WhatsApp by managing stock from Google Sheets.",
+      architecture: "SPA Frontend with React (Vite) and Tailwind CSS v4. Real-time Database and CMS using Google Sheets (CSV parser). Serverless Backend/Tracking via Google Apps Script.",
+      goal: "Digitize the catalog of a local business and connect its sales directly to WhatsApp, allowing the owner to manage stock without technical knowledge.",
+      challenges: "Develop a real-time spreadsheet-based CMS with dynamic validation, build a Serverless Popularity Tracker bypassing CORS restrictions, and optimize technical SEO in an SPA.",
+      features: [
+        "Google Sheets as real-time CMS (custom CSV parser)",
+        "Serverless Popularity Tracker (Apps Script) with scoring algorithm",
+        "Performance Optimization (Lighthouse > 85) with Code-Splitting and Lazy Loading",
+        "Advanced Dynamic SEO with JSON-LD and canonicals injection (custom useSEO hook)",
+        "Anti-Spam Security: Honeypot at checkout, isTrusted validation, and HTML decoy",
+        "Conversion Analytics integrated dynamically with Google Analytics 4 (GA4)"
+      ],
+      tags: ["React", "Vite", "Tailwind CSS", "Google Sheets", "Apps Script", "SEO", "GA4"],
+      image: "/homeElBigua.PNG",
+      gallery: [
+        "/homeElBigua.PNG",
+        "/ElBiguaCatalogo.PNG",
+        "/ElBiguaLinkedIn.PNG"
+      ],
+      status: "completed",
+      link: "https://el-bigua-deportes-web.vercel.app/"
     },
     {
       id: "agarrame-como-puedas",
